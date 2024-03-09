@@ -33,9 +33,7 @@ class Value {
     }
 
     __pow__(other) {
-        // assert isinstance(other, (int, float)), "only supporting int/float powers for now"
         let out = new Value(this.data ** other, [this,], '**{other}')
-
 
         out._backward = () => this.grad += (other * this.data ** (other - 1)) * out.grad
 
@@ -64,7 +62,6 @@ class Value {
         }
         build_topo(this)
 
-        // # go one variable at a time and apply the chain rule to get its gradient
         this.grad = 1
         for (const v of [...topo].reverse()) {
             v._backward()
