@@ -45,7 +45,7 @@ class Value {
     relu() {
         let out = new Value(this.data < 0 ? 0 : this.data, [this,], 'ReLU')
 
-        out._backward = () => this.grad += (out.data > 0) * out.grad
+        out._backward = () => this.grad += (out.data > 0 ? 1 : 0) * out.grad
 
         return out
     }
@@ -56,7 +56,7 @@ class Value {
         function build_topo(v) {
             if (!visited.has(v)) {
                 visited.add(v)
-                for (child in v._prev) {
+                for (const child of v._prev) {
                     build_topo(child)
                 }
                 topo.push(v)

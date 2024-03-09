@@ -27,11 +27,11 @@ class Damage {
     }
 
     /**
-     * (baseMultiplier * totalAtk + dmgIncrease)
-     *   * (1 + totalDmgBonus)
-     *   * (1 + totalCritDmg)
-     *   * enemyDefMult
-     *   * (1 - totalEnemyDmgRes)
+     * (baseMultiplier ⨉ totalAtk + dmgIncrease)
+     *   ⨉ (1 + totalDmgBonus)
+     *   ⨉ (1 + totalCritDmg)
+     *   ⨉ enemyDefMult
+     *   ⨉ (1 - totalEnemyDmgRes)
      */
 
     /**
@@ -49,4 +49,25 @@ class Damage {
     }
 }
 
-module.exports = { Damage }
+class TotalAtk {
+
+    /**
+     *
+     * @param {Value} base_atk
+     * @param {Value} atk_percent
+     * @param {Value} atk
+     */
+    constructor(base_atk, atk_percent, atk) {
+        this.base_atk = base_atk
+        this.atk_percent = atk_percent
+        this.atk = atk
+    }
+
+    out() {
+        return this.base_atk
+            .__add__(this.base_atk.__mul__(this.atk_percent))
+            .__add__(this.atk)
+    }
+}
+
+module.exports = { Damage, TotalAtk }
