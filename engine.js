@@ -71,37 +71,6 @@ class Value {
         }
     }
 
-    __neg__() {
-        return this.__mul__(-1)
-    }
-
-    __radd__(other) {
-        return this + other
-    }
-
-    __sub__(other) {
-        return this + (-other)
-    }
-
-    __rsub__(other) {
-        return other + (-this)
-    }
-
-    __rmul__(other) {
-        return this * other
-    }
-
-    __truediv__(other) {
-        return this * other ** -1
-    }
-
-    __rtruediv__(other) {
-        return other * this ** -1
-    }
-
-    __repr__() {
-        return "Value(data={this.data}, grad={this.grad})"
-    }
 }
 
 module.exports = { Value }

@@ -392,11 +392,6 @@ for (let i = 0; i < step; i++) {
         p.grad = 0
     }
 
-    if (isNaN(loss.data)) {
-        console.log(i)
-        break
-    }
-
     loss.backward()
 
     for (const p of x.parameters()) {
