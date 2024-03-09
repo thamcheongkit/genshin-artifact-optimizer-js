@@ -388,9 +388,6 @@ for (let i = 0; i < step; i++) {
         if (!(p instanceof Value)) throw new Error()
         p.grad = 0
     }
-    for (const p of c.parameters()) {
-        p.grad = 0
-    }
 
     loss.backward()
 
